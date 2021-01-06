@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<link rel="stylesheet" href="/public/third_party/bootstrap/css/bootstrap.min.css">
+
+</head>
+<body>
+	<div class="container">
+		<nav class="navbar navbar-expand-lg navbar-dark bg-success mb-2">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="/"><strong>IoTプロトタイピングシステム(仮)</strong></a>
+				</div>
+				<div class="dropdown">
+					<button type="button" class="btn btn-light dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">電源オプション</button>
+					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+						<a class="dropdown-item" href="/reboot">再起動</a>
+						<a class="dropdown-item" href="/shutdown">シャットダウン</a>
+					</div>
+				</div>
+			</div>
+		</nav>
+		<h1>Editor</h1>
+		<a href="<%- host_name %>:1880">NodeRED</a>
+		<h2>Information</h2>
+		<p>IPアドレス: <%= ip_addr %></p>
+		<p>ホスト名: <%= host_name %></p>
+		<p>MACアドレス: <%= mac_addr %></p>
+	</div>
+	<script src="/public/third_party/jquery/jquery.slim.min.js"></script>
+	<script src="/public/third_party/bootstrap/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
