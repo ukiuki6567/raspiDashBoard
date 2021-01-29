@@ -26,6 +26,10 @@ function getHardwareInfomation(){
     return ifacesObj;
 }
 
+function shutdown(callback){
+
+}
+
 router.get('/', (req, res) => {
 	console.log(getHardwareInfomation().ipv4[0]);
 	res.render("index", {
