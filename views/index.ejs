@@ -5,7 +5,6 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Document</title>
 	<link rel="stylesheet" href="/public/third_party/bootstrap/css/bootstrap.min.css">
-
 </head>
 <body>
 	<div class="container">
@@ -17,8 +16,8 @@
 				<div class="dropdown">
 					<button type="button" class="btn btn-light dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">電源オプション</button>
 					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-						<a class="dropdown-item" href="/reboot">再起動</a>
-						<a class="dropdown-item" href="/shutdown">シャットダウン</a>
+						<a class="dropdown-item" data-toggle="modal" data-target="#rebootModal">再起動</a>
+						<a class="dropdown-item" data-toggle="modal" data-target="#shutdownModal">シャットダウン</a>
 					</div>
 				</div>
 			</div>
@@ -29,6 +28,45 @@
 		<p>IPアドレス: <%= ip_addr %></p>
 		<p>ホスト名: <%= host_name %></p>
 		<p>MACアドレス: <%= mac_addr %></p>
+		<div class="modal fade" id="shutdownModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="modalLabel">シャットダウン</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<p>シャットダウンしてもよろしいですか？</p>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+						<button type="button" class="btn btn-primary" onclick="location.href='/shutdown'">Shutdown</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal fade" id="rebootModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="modalLabel">再起動</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<p>再起動してもよろしいですか？</p>
+						<p>※約1分程度接続が出来なくなります</p>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+						<button type="button" class="btn btn-primary" onclick="location.href='/reboot'">Reboot</button>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 	<script src="/public/third_party/jquery/jquery.slim.min.js"></script>
 	<script src="/public/third_party/bootstrap/js/bootstrap.bundle.min.js"></script>

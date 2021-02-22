@@ -26,10 +26,6 @@ function getHardwareInfomation(){
     return ifacesObj;
 }
 
-function shutdown(callback){
-
-}
-
 router.get('/', (req, res) => {
 	console.log(getHardwareInfomation().ipv4[0]);
 	res.render("index", {
@@ -41,12 +37,14 @@ router.get('/', (req, res) => {
 
 router.get('/shutdown', (req, res) => {
 	console.log("shutdown");
-	res.send('shutdown.');
+    exec('shutdown -h now').toString();
+	res.send('システムをシャットダウンしています･･･ 緑ランプの点滅が終わるまで電源コードを抜かないでください。\n');
 });
 
 router.get('/reboot', (req, res) => {
 	console.log("reboot");
-	res.send('reboot.');
+    exec('shutdown -r now').toString();
+	res.send('再起動しています･･･ 起動後に画面は自動更新されます(所要時間目安:1分)\n');
 });
 
 module.exports = router;
