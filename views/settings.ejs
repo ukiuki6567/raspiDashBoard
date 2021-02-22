@@ -1,0 +1,28 @@
+<%-  include('partials/header'); %>
+<div class="container">
+	<nav class="navbar navbar-expand-lg navbar-dark bg-success mb-2">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="/"><strong><%= service_name %></strong></a>
+			</div>
+		</div>
+	</nav>
+	<h2>初期設定</h2>
+	<form>
+		<div class="form-group">
+			<label for="ssidSelectForm">SSID</label>
+			<select class="form-control" name="SSID" id="ssidSelectForm">
+				<% ssid_list.forEach(item => { %>
+					<option><%= item %></option>
+				<% }) %>
+			</select>
+			<small>PCと同じWi-Fiの名前を指定してください。日本語を含む名前だと正しく表示されない場合があります。</small>
+		</div>
+		<div class="form-group">
+			<label for="passwordInputForm">Password</label>
+			<input type="password" class="form-control" id="passwordInputForm" data-toggle="password">
+		</div>
+		<button type="submit" class="btn btn-success">Submit</button>
+	</form>
+</div>
+<%-  include('partials/footer'); %>

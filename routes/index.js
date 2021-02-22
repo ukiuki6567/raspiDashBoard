@@ -1,7 +1,7 @@
-var router = require('express').Router();
-var exec = require('child_process').exec;
-var os = require('os');
-var address = require('getmac');
+const router = require('express').Router();
+const exec = require('child_process').exec;
+const os = require('os');
+const address = require('getmac');
 
 function getHardwareInfomation(){
 	var ifacesObj = {}
@@ -29,6 +29,8 @@ function getHardwareInfomation(){
 router.get('/', (req, res) => {
 	console.log(getHardwareInfomation().ipv4[0]);
 	res.render("index", {
+        title: "Home",
+        service_name: "IoTプロトタイピングシステム",
 		ip_addr: getHardwareInfomation().ipv4[0].ip_addr,
 		host_name: os.hostname,
 		mac_addr: getHardwareInfomation().ipv4[0].mac_addr
