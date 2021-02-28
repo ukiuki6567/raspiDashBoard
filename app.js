@@ -1,8 +1,13 @@
 const http = require('http');
 const morgan = require('morgan');
 const express = require('express');
+const bodyParser = require('body-parser');
 
 var app = express();
+
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
 
 app.use(morgan('short'));
 
