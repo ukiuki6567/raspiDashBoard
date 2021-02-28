@@ -77,6 +77,8 @@ router.post('/submit', (req, res)  => {
             display.setCursor(1, 1);
             display.writeString(font, 2, 'Wi-Fi Connect Failed.', 1, true);
             execSync('./shells/switch_to_ap.sh');
+            display.setCursor(1, 1);
+            display.writeString(font, 2, 'Please Setting again.', 1, true);
         }
     })
 
