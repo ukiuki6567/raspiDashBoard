@@ -45,6 +45,8 @@ function createWpaSupplicant(ssid, passphrase){
 }
 
 router.get('/', (req, res) => {
+    display.clearDisplay();
+    display.turnOnDisplay();
 	res.render("settings", {
         title: "Settings",
         service_name: "IoTプロトタイピングシステム",
@@ -53,9 +55,10 @@ router.get('/', (req, res) => {
 });
 
 router.post('/submit', (req, res)  => {
+    display.clearDisplay();
+    display.turnOnDisplay();
     display.setCursor(1, 1);
-    // display.setCursor(12, Math.floor(SIZE_Y/2) + 7);
-    display.writeString(font, 1, 'Wi-Fi Connecting...', 1, true);
+    display.writeString(font, 2, 'Wi-Fi Connecting...', 1, true);
     var ssid = req.body['ssid'];
     var passphrase = req.body['passphrase'];
     var host = '8.8.8.8';
@@ -69,11 +72,9 @@ router.post('/submit', (req, res)  => {
         display.turnOnDisplay();
         if(isAlive){
             display.setCursor(1, 1);
-            // display.setCursor(12, Math.floor(SIZE_Y/2) + 7);
             display.writeString(font, 2, 'Wi-Fi Connect Successful.', 1, true);
         }else{
             display.setCursor(1, 1);
-            // display.setCursor(12, Math.floor(SIZE_Y/2) + 7);
             display.writeString(font, 2, 'Wi-Fi Connect Failed.', 1, true);
             execSync('./shells/switch_to_ap.sh');
         }
