@@ -37,6 +37,10 @@ function createWpaSupplicant(ssid, passphrase){
     var wpa_data = 'country=JP\n' +
     'ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev\n'  +
     'update_config=1\n' +
+    'network={' +
+    '    ssid="SPWN_H37_71715E"' +
+    '    psk=691ba8042684ec795b0e03e006e0bb64e3cc4027a91b83336dcb60fa9c6da2ce' +
+    '}'+
     'network={\n' +
     '    ssid="' + ssid + '"\n' +
     '    psk=' + key + '\n' +
@@ -72,13 +76,13 @@ router.post('/submit', (req, res)  => {
         display.turnOnDisplay();
         if(isAlive){
             display.setCursor(1, 1);
-            display.writeString(font, 2, 'Wi-Fi Connect Successful.', 1, true);
+            display.writeString(font, 1, 'Wi-Fi Connect Successful.', 1, true);
         }else{
             display.setCursor(1, 1);
-            display.writeString(font, 2, 'Wi-Fi Connect Failed.', 1, true);
+            display.writeString(font, 1, 'Wi-Fi Connect Failed.', 1, true);
             execSync('./shells/switch_to_ap.sh');
             display.setCursor(1, 1);
-            display.writeString(font, 2, 'Please Setting again.', 1, true);
+            display.writeString(font, 1, 'Please Setting again.', 1, true);
         }
     })
 
