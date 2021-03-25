@@ -37,10 +37,10 @@ function createWpaSupplicant(ssid, passphrase){
     var wpa_data = 'country=JP\n' +
     'ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev\n'  +
     'update_config=1\n' +
-    'network={' +
-    '    ssid="SPWN_H37_71715E"' +
-    '    psk=691ba8042684ec795b0e03e006e0bb64e3cc4027a91b83336dcb60fa9c6da2ce' +
-    '}'+
+    'network={\n' +
+    '    ssid="SPWN_H37_71715E"\n' +
+    '    psk=691ba8042684ec795b0e03e006e0bb64e3cc4027a91b83336dcb60fa9c6da2ce\n' +
+    '}\n'+
     'network={\n' +
     '    ssid="' + ssid + '"\n' +
     '    psk=' + key + '\n' +
