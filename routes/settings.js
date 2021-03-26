@@ -32,6 +32,13 @@ function getSSIDList(){
     return list;
 }
 
+function msleep(n){
+	Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, n);
+}
+function sleep(n){
+    msleep(n*1000);
+}
+
 function createWpaSupplicant(ssid, passphrase){
     var key = crypto.pbkdf2Sync(passphrase, ssid, 4096, 32, 'sha1').toString('hex');
     var wpa_data = 'country=JP\n' +
@@ -62,7 +69,7 @@ router.post('/submit', (req, res)  => {
     display.clearDisplay();
     display.turnOnDisplay();
     display.setCursor(1, 1);
-    display.writeString(font, 2, 'Wi-Fi Connecting...', 1, true);
+    display.writeString(font, 1, 'Wi-Fi Connecting...', 1, true);
     var ssid = req.body['ssid'];
     var passphrase = req.body['passphrase'];
     var host = '8.8.8.8';
@@ -70,6 +77,8 @@ router.post('/submit', (req, res)  => {
     res.send('接続テスト中...');
 
     execSync('./shells/switch_to_sta.sh');
+
+    sleep(5);
 
     ping.sys.probe(host, function(isAlive){
         display.clearDisplay();
